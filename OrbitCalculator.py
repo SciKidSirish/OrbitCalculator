@@ -1,68 +1,18 @@
 import numpy as np
 import astropy
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Input, Activation
-from tensorflow.keras.datasets import boston_housing
-from tensorflow.keras import layers
 import datetime
-import tensorflow as tf
-import matplotlib.pyplot as plt
 from astropy.coordinates import  Galactic, FK4, FK5, AltAz  # Low-level frames
 from astropy.coordinates import Angle, Latitude, Longitude  # Angles
-
 import astropy.units as u
 from astropy.coordinates import SkyCoord, SkyOffsetFrame, EarthLocation, AltAz, ICRS
 from astropy.time import Time
-from PIL import Image
-import PIL
 import math
 
-# def brightness(path):
-#   image = Image.open(path)
 
-#   #summarize some details about the image
-
-
-#   image = PIL.ImageOps.grayscale(image)
-
-#   # print(image.format)
-#   # print(image.size)
-#   # print(image.mode)
-
-#   from numpy import asarray
-
-#   # load the image and convert into
-#   # numpy array
-#   numpydata = asarray(image)
-
-#   # data
-#   #print(numpydata)
-
-#   px = list(numpydata)
-
-
-#   for i in range(0,len(px)):
-#     px[i] = list(px[i])
-
-#   px2 = []
-#   for i in range(0,len(px)):
-#     px2.extend(px[i])
-
-#   for i in range(0,len(px2)):
-#     if px2[i]<100:
-#       px2.pop(i)
-
-#   from statistics import mean
-
-#   b = mean(px2)
-
-#   return b
-
-# bList = []
 
 tList = []
 
-parallaxDone? = False
+parallaxDone = False
 for i in range(1,11):
   print("Observation {}:".format(i))
   t = input("What is the date(in YYYY-MM-DD format with no spaces)?  ") + "T" + input("What is the time in HH:MM:SS 24hr format?   ") + "Z"
@@ -70,7 +20,7 @@ for i in range(1,11):
   az = float(input("What is the azimuth in degrees (exlude symbol)?   "))
   lat = float(input("What is the lattitude in degrees (exlude symbol)?   "))
   lon = float(input("What is the longitude in degrees (exlude symbol)?   "))
-  if parallaxDone? == False:
+  if parallaxDone == False:
     if input("Would you like to add a parallax measurement (y/n)?   ") == "y":
       print("Parallax measurements:")
       pt = input("What is the date(in YYYY-MM-DD format with no spaces)?  ") + "T" + input("What is the time in HH:MM:SS 24hr format?   ") + "Z"
@@ -91,7 +41,7 @@ for i in range(1,11):
       point = point[:ind]
       point = point.strip('()')
       point = [cLength, list(map(float, point.split(', ')))[0]]
-      parallaxDone? = True
+      parallaxDone = True
 
 
 
@@ -123,8 +73,8 @@ for i in range(1,11):
                                           "%Y-%m-%dT%H:%M:%SZ")
   unix_time = datetime.datetime.timestamp(date_format)
   eqList.append(unix_time/31536000)
-  # eqList.append(brightness(path))
   tList.append(eqList)
+
   
   
   import astropy
